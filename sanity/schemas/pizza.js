@@ -13,6 +13,7 @@ export default {
       title: 'Pizza Name',
       type: 'string',
       description: 'Name of the pizza',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -22,6 +23,7 @@ export default {
         source: 'name',
         maxLength: 100,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'image',
@@ -30,14 +32,15 @@ export default {
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'price',
       title: 'Price',
       type: 'number',
-      description: 'Price of the pizza in pence',
-      validation: (Rule) => Rule.min(1000),
       inputComponent: PriceInput,
+      description: 'Price of the pizza in pence',
+      validation: (Rule) => Rule.required().min(1000),
     },
     {
       name: 'toppings',
@@ -49,6 +52,7 @@ export default {
           to: [{ type: 'topping' }],
         },
       ],
+      validation: (Rule) => Rule.required().min(1),
     },
   ],
   preview: {

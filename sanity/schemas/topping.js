@@ -11,6 +11,7 @@ export default {
       title: 'Topping Name',
       type: 'string',
       description: 'Name of the topping',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'vegetarian',

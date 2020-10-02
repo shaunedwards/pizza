@@ -10,6 +10,7 @@ export default {
       name: 'name',
       title: 'Name',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -19,12 +20,14 @@ export default {
         source: 'name',
         maxLength: 100,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'description',
       title: 'Description',
       type: 'text',
       description: 'Tell us a bit about this person',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'image',
@@ -33,6 +36,7 @@ export default {
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     },
   ],
 };
