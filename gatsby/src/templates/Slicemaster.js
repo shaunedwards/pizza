@@ -3,6 +3,8 @@ import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
+import SEO from '../components/SEO';
+
 const NameStyles = styled.h2`
   margin-top: -2.5rem;
   z-index: 2;
@@ -14,13 +16,19 @@ const NameStyles = styled.h2`
 export default function SingleSlicemasterPage({ data }) {
   const { slicemaster } = data;
   return (
-    <div className="center">
-      <Img fluid={slicemaster.image.asset.fluid} alt={slicemaster.name} />
-      <NameStyles>
-        <span className="mark">{slicemaster.name}</span>
-      </NameStyles>
-      <p>{slicemaster.description}</p>
-    </div>
+    <>
+      <SEO
+        title={slicemaster.name}
+        image={slicemaster.image?.asset?.fluid?.src}
+      />
+      <div className="center">
+        <Img fluid={slicemaster.image.asset.fluid} alt={slicemaster.name} />
+        <NameStyles>
+          <span className="mark">{slicemaster.name}</span>
+        </NameStyles>
+        <p>{slicemaster.description}</p>
+      </div>
+    </>
   );
 }
 

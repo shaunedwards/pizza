@@ -2,6 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
+import SEO from '../components/SEO';
+
 const BeerGridStyles = styled.div`
   display: grid;
   gap: 2rem;
@@ -26,6 +28,7 @@ export default function BeersPage({ data }) {
   const beers = data.beers.nodes;
   return (
     <>
+      <SEO title="Stocked Beers" />
       <h2 className="center" style={{ marginBottom: '2rem' }}>
         We have {beers.length} beers available! Dine in only!
       </h2>

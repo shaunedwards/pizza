@@ -9,6 +9,7 @@ export default {
     description: 'The best pizza place in town!',
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-source-sanity',

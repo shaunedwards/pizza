@@ -3,6 +3,7 @@ import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
+import SEO from '../components/SEO';
 import Pagination from '../components/Pagination';
 
 const SlicemasterGrid = styled.div`
@@ -43,6 +44,7 @@ export default function SlicemastersPage({ data, pageContext }) {
   const slicemasters = data.slicemasters.nodes;
   return (
     <>
+      <SEO title={`Slicemasters - Page ${currentPage || 1}`} />
       <Pagination
         base="/slicemasters"
         currentPage={currentPage || 1}
