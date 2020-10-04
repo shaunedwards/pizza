@@ -17,16 +17,33 @@ export default function OrderPage({ data }) {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    mapleSyrup: '',
   });
-  const { order, addToOrder, removeFromOrder } = useOrder({
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  } = useOrder({
     pizzas,
-    inputs: values,
+    values,
   });
+  if (message) {
+    return (
+      <div className="center">
+        <h2>{message}</h2>
+        <p>Please check your email for confirmation.</p>
+      </div>
+    );
+  }
   return (
     <>
       <SEO title="Order a Pizza!" />
-      <OrderStyles>
-        <fieldset>
+      <OrderStyles onSubmit={submitOrder}>
+        <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor="name">Name</label>
           <input
@@ -42,8 +59,15 @@ export default function OrderPage({ data }) {
             value={values.email}
             onChange={updateValue}
           />
+          <input
+            type="text"
+            name="mapleSyrup"
+            className="mapleSyrup"
+            value={values.mapleSyrup}
+            onChange={updateValue}
+          />
         </fieldset>
-        <fieldset className="menu">
+        <fieldset className="menu" disabled={loading}>
           <legend>Menu</legend>
           {pizzas.map((pizza) => (
             <MenuItemStyles key={pizza.id}>
@@ -68,7 +92,7 @@ export default function OrderPage({ data }) {
             </MenuItemStyles>
           ))}
         </fieldset>
-        <fieldset className="order">
+        <fieldset className="order" disabled={loading}>
           <legend>Your Order</legend>
           <PizzaOrder
             order={order}
@@ -76,9 +100,12 @@ export default function OrderPage({ data }) {
             removeFromOrder={removeFromOrder}
           />
         </fieldset>
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>Your total is {formatMoney(calcOrderTotal(order, pizzas))}</h3>
-          <button type="submit">Order Ahead</button>
+          <div>{error ? <p>{error}</p> : ''}</div>
+          <button type="submit">
+            {loading ? 'Placing Order...' : 'Order Ahead'}
+          </button>
         </fieldset>
       </OrderStyles>
     </>
