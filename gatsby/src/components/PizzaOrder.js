@@ -6,6 +6,9 @@ import calcPizzaPrice from '../utils/calcPizzaPrice';
 import MenuItemStyles from '../styles/MenuItemStyles';
 
 export default function PizzaOrder({ order, pizzas, removeFromOrder }) {
+  if (!order.length) {
+    return <p>Your order is empty...</p>;
+  }
   return (
     <>
       {order.map((item, index) => {

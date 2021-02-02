@@ -11,6 +11,17 @@ export function wrapRootElement({ element }) {
   return <OrderProvider>{element}</OrderProvider>;
 }
 
-export function shouldUpdateScroll() {
-  return false;
+export function shouldUpdateScroll({
+  routerProps: { location },
+  getSavedScrollPosition,
+}) {
+  const pagesToRetainScrollPosition = ['pizzas', 'topping', 'slicemasters'];
+  const retainScrollPosition = pagesToRetainScrollPosition.some((page) =>
+    location.pathname.includes(page)
+  );
+  if (retainScrollPosition) {
+    const currentPosition = getSavedScrollPosition(location);
+    window.scrollTo(currentPosition || [0, 0]);
+    return false;
+  }
 }

@@ -24,13 +24,21 @@ export default function SEO({ children, location, description, title, image }) {
       <meta name="description" content={site.siteMetadata.description} />
       {location && <meta property="og:url" content={location.href} />}
       <meta property="og:image" content={image || '/logo.svg'} />
-      <meta property="og:title" content={title} key="ogtitle" />
       <meta
-        propery="og:site_name"
+        property="og:title"
+        content={`${title} - ${site.siteMetadata.title}`}
+        key="ogtitle"
+      />
+      <meta
+        property="og:site_name"
         content={site.siteMetadata.title}
         key="ogsitename"
       />
-      <meta property="og:description" content={description} key="ogdesc" />
+      <meta
+        property="og:description"
+        content={description || site.siteMetadata.description}
+        key="ogdesc"
+      />
       {children}
     </Helmet>
   );

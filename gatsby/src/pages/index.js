@@ -10,7 +10,7 @@ function HotSlices({ hotSlices }) {
   return (
     <div>
       <h2 className="center">
-        <span className="mark tilt">Hot Slices</span>
+        <span className="mark">Hot Slices</span>
       </h2>
       <p>Come and get them while they're hot!</p>
       {!hotSlices && <LoadingGrid count={4} />}
@@ -26,7 +26,7 @@ function CurrentlySlicing({ slicemasters }) {
   return (
     <div>
       <h2 className="center">
-        <span className="mark tilt">Active Slicers</span>
+        <span className="mark">Active Slicers</span>
       </h2>
       <p>Standing by with their pizza wheels!</p>
       {!slicemasters && <LoadingGrid count={4} />}
