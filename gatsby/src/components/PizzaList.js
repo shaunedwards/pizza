@@ -8,6 +8,9 @@ const PizzaGridStyles = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;
   grid-auto-rows: auto auto 500px;
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 const PizzaStyles = styled.div`

@@ -7,10 +7,16 @@ const OrderStyles = styled.form`
   fieldset {
     grid-column: span 2;
     max-height: 600px;
-    overflow: auto;
-    display: grid;
-    gap: 1rem;
-    align-content: start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    label {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+    label + label {
+      margin-top: 1rem;
+    }
     &.order,
     &.menu {
       grid-column: span 1;
@@ -20,6 +26,11 @@ const OrderStyles = styled.form`
     fieldset.menu,
     fieldset.order {
       grid-column: span 2;
+    }
+  }
+  @media (max-width: 320px) {
+    input {
+      width: calc(100% - 7px);
     }
   }
   .mapleSyrup {

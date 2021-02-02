@@ -9,6 +9,12 @@ const PizzaGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  @media (max-width: 540px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 export default function SinglePizzaPage({ data }) {

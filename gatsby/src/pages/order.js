@@ -45,20 +45,26 @@ export default function OrderPage({ data }) {
       <OrderStyles onSubmit={submitOrder}>
         <fieldset disabled={loading}>
           <legend>Your Info</legend>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={values.name}
-            onChange={updateValue}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={values.email}
-            onChange={updateValue}
-          />
+          <label htmlFor="name">
+            Name
+            <input
+              type="text"
+              name="name"
+              maxLength={70}
+              value={values.name}
+              onChange={updateValue}
+            />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              type="email"
+              name="email"
+              maxLength={254}
+              value={values.email}
+              onChange={updateValue}
+            />
+          </label>
           <input
             type="text"
             name="mapleSyrup"
@@ -102,7 +108,7 @@ export default function OrderPage({ data }) {
         </fieldset>
         <fieldset disabled={loading}>
           <h3>Your total is {formatMoney(calcOrderTotal(order, pizzas))}</h3>
-          <div>{error ? <p>{error}</p> : ''}</div>
+          <div>{error && <p>{error}</p>}</div>
           <button type="submit">
             {loading ? 'Placing Order...' : 'Order Ahead'}
           </button>

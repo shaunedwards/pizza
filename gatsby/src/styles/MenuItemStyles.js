@@ -38,6 +38,14 @@ const MenuItemStyles = styled.div`
     box-shadow: none;
     line-height: 1rem;
   }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+    .gatsby-image-wrapper {
+      display: none;
+    }
+    grid-template-rows: auto;
+  }
 `;
 
 export default MenuItemStyles;
