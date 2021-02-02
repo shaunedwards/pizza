@@ -4,32 +4,26 @@ function generateOrderEmail({ order, total }) {
   return `
     <div>
       <h2>Your Recent Order for ${total}</h2>
-      <p>Please start walking over, we aim to have your order ready within 20 minutes.</p>
-      <ul>
-        ${order
-          .map(
-            (item) => `<li>
-          <img src="${item.thumbnail}" alt="${item.name}" class="thumbnail" />
-          <p style="display:inline;">${item.size} ${item.name} - ${item.price}</p>
-        </li>`
-          )
-          .join('')}
-      </ul>
-      <p>Your total of <strong>${total}</strong> is due at pickup.</p>
-      <p>Thanks for choosing Slicks Slices!</p>
-      <style>
-        ul {
-          list-style: none;
-        }
-        p {
-          font-size: 15px;
-        }
-        .thumbnail {
-          margin-right: 1rem;
-          margin-bottom: 1rem;
-          vertical-align: middle;
-        }
-      </style>
+      <p style="font-size:15px;">Please start walking over, we aim to have your order ready within 20 minutes.</p>
+      <table>
+        <tbody>
+          ${order
+            .map(
+              (item) =>
+                `<tr>
+                  <td style="padding: 5px 10px 5px 20px">
+                    <img src="${item.thumbnail}" alt="${item.name}" />
+                  </td>
+                  <td>
+                    <p style="font-size:15px;">${item.name}<br /><br />${item.size} - ${item.price}</p>
+                  </td>
+                </tr>`
+            )
+            .join('')}
+        </tbody>
+      </table>
+      <p style="font-size:15px;">Your total of <strong>${total}</strong> is due at pickup.</p>
+      <p style="font-size:15px;">Thanks for choosing Slicks Slices!</p>
     </div>
   `;
 }
@@ -75,7 +69,7 @@ exports.handler = async (event, context) => {
   }
   // send success email
   await transporter.sendMail({
-    from: 'Slicks Slices <slick@example.com>',
+    from: 'Slicks Slices <mail@sme.dev>',
     to: `${body.name} <${body.email}>`,
     subject: 'Your pizza is in the oven!',
     html: generateOrderEmail({ order: body.order, total: body.total }),
