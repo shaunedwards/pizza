@@ -14,6 +14,16 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 100,
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'vegetarian',
       title: 'Vegetarian',
       type: 'boolean',

@@ -9,7 +9,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
     query {
       pizzas: allSanityPizza {
         nodes {
-          name
           slug {
             current
           }
@@ -36,13 +35,16 @@ async function turnToppingsIntoPages({ graphql, actions }) {
       toppings: allSanityTopping {
         nodes {
           name
+          slug {
+            current
+          }
         }
       }
     }
   `);
   data.toppings.nodes.forEach((topping) => {
     actions.createPage({
-      path: `/topping/${topping.name}`,
+      path: `/topping/${topping.slug.current}`,
       component: toppingTemplate,
       context: {
         topping: topping.name,
@@ -98,7 +100,7 @@ async function fetchBeersAndTurnIntoNodes({
   createContentDigest,
 }) {
   // Fetch a list of beers
-  const response = await fetch('https://sampleapis.com/beers/api/ale');
+  const response = await fetch('https://api.sampleapis.com/beers/ale');
   const beers = await response.json();
   // Loop over beers and create a node for each of them
   for (const beer of beers) {
